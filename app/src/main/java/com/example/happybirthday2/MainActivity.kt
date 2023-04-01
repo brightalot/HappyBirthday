@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.happybirthday2.ui.theme.HappyBirthday2Theme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +27,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             HappyBirthday2Theme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    BirthdayGreetingWithText(message = "Happy Birthday Hyunsu!", from = "- from gamja")
+                Surface(color = MaterialTheme.colors.background) {
+                    BirthdayGreetingWithText("Happy Birthday Hyunsu!","- from gamja")
                 }
             }
         }
@@ -62,8 +60,12 @@ fun BirthdayCardPreview() {
 @Composable
 fun BirthdayGreetingWithImage(message: String, from: String, modifier: Modifier = Modifier) {
     val image = painterResource(R.drawable.androidparty)
-    Image(
-        painter = image,
-        contentDescription = null
+    //Step 3 create a box to overlap image and texts
+    Box {
+        Image(
+            painter = image,
+            contentDescription = null
         )
+        BirthdayGreetingWithText(message = message, from = from)
+    }
 }
