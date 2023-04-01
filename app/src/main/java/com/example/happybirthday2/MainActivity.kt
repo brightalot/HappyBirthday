@@ -38,6 +38,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = false)
+@Composable
+private fun BirthdayCardPreview() {
+    HappyBirthday2Theme {
+        BirthdayGreetingWithImage( stringResource(R.string.happy_birthday_text),
+            stringResource(R.string.signature_text))
+
+    }
+}
+
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier = Modifier) {
     Column(
@@ -55,18 +65,9 @@ fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier =
             text = from,
             fontSize = 24.sp,
             modifier = Modifier
-                    .padding(top = 16.dp)
+                .padding(top = 16.dp, end = 16.dp)
+                .align(alignment = Alignment.End)
         )
-    }
-}
-
-@Preview(showBackground = false)
-@Composable
-private fun BirthdayCardPreview() {
-    HappyBirthday2Theme {
-        BirthdayGreetingWithImage( stringResource(R.string.happy_birthday_text),
-            stringResource(R.string.signature_text))
-
     }
 }
 
@@ -80,6 +81,6 @@ fun BirthdayGreetingWithImage(message: String, from: String, modifier: Modifier 
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
-        BirthdayGreetingWithText(message = message, from = from)
+        BirthdayGreetingWithText(message = message, from = from, modifier = modifier)
     }
 }
