@@ -19,6 +19,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +29,9 @@ class MainActivity : ComponentActivity() {
             HappyBirthday2Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    BirthdayGreetingWithText("Happy Birthday Hyunsu!","- from gamja")
+                    BirthdayGreetingWithImage( stringResource(R.string.happy_birthday_text), stringResource(
+                                            R.string.signature_text)
+                    )
                 }
             }
         }
@@ -57,11 +60,13 @@ fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier =
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
-fun BirthdayCardPreview() {
+private fun BirthdayCardPreview() {
     HappyBirthday2Theme {
-        BirthdayGreetingWithImage("Happy Birthday Hyunsu", "- from gamja")
+        BirthdayGreetingWithImage( stringResource(R.string.happy_birthday_text),
+            stringResource(R.string.signature_text))
+
     }
 }
 
